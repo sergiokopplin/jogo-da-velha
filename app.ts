@@ -27,7 +27,7 @@ export class TicTacToe {
     return this.board.some(column => column.some(item => [1, 2].includes(item)))
   }
 
-  private hasValidMoves (): boolean {
+  private hasOnlyValidMoves (): boolean {
     let countFirstPlayer = 0
     let countSecondPlayer = 0
 
@@ -45,7 +45,7 @@ export class TicTacToe {
   }
 
   private isValidBoard (): boolean {
-    const validations = [this.hasEnoughItems(), this.hasOnlyAllowedItems(), this.hasNotOnlyZeros(), this.hasValidMoves()]
+    const validations = [this.hasEnoughItems(), this.hasOnlyAllowedItems(), this.hasNotOnlyZeros(), this.hasOnlyValidMoves()]
 
     return validations.filter(item => item === true).length === validations.length
   }
