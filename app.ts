@@ -1,15 +1,13 @@
-type Board = Number[][]
+type Board = number[][]
 
 export class TicTacToe {
-  private readonly board: Board;
-  private readonly rows: Number;
-  private readonly columns: Number;
-  private readonly validValues: Number[]
+  private readonly board: Board
+  private readonly dimensions: number
+  private readonly validValues: number[]
 
   constructor (board: Board) {
     this.board = board
-    this.columns = 3
-    this.rows = 3
+    this.dimensions = 3
     this.validValues = [0, 1, 2]
 
     if (!this.isValidBoard()) {
@@ -17,23 +15,24 @@ export class TicTacToe {
     }
   }
 
-  private isValidBoard (): Boolean {
-    if (this.board.length !== this.columns) {
-      return false
-    }
-
-    const hasError = this.board.some(column => {
-      const hasNotEnoughItems = column.length !== this.rows
-      if (hasNotEnoughItems) return true
-
-      const hasDifferentNumbers = column.some(item => !this.validValues.includes(item))
-      if (hasDifferentNumbers) return true
-    })
-
-    return !hasError
+  private hasEnoughItems (): boolean {
+    return this.board.some(column => column.length === this.dimensions)
   }
 
-  // Status: empty | running | tie | winner
+  private hasOnlyAllowedItems (): boolean {
+    return this.board.some(column => column.some(item => this.validValues.includes(item)))
+  }
+
+  private hasNotOnlyZeros (): boolean {
+    return this.board.some(column => column.some(item => [1, 2].includes(item)))
+  }
+
+  private isValidBoard (): boolean {
+    const validations = [this.hasEnoughItems(), this.hasOnlyAllowedItems(), this.hasNotOnlyZeros()]
+    return validations.filter(item => item === true).length === validations.length
+  }
+
+  // Status: running | tie | winner
   // Winner: null | 1 | 2
 
   // getStatus(board): status

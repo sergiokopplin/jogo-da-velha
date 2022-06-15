@@ -11,5 +11,6 @@ describe('TicTacToe', () => {
     expect(() => new TicTacToe([[], [], []])).toThrowError('Invalid Board')
     expect(() => new TicTacToe([[1], [2], [3]])).toThrowError('Invalid Board')
     expect(() => new TicTacToe([[5, 5, 5], [3, 3, 3], [4, 4, 4]])).toThrowError('Invalid Board')
+    expect(() => new TicTacToe([[0, 0, 0], [0, 0, 0], [0, 0, 0]])).toThrowError('Invalid Board')
   })
 })
