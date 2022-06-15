@@ -6,7 +6,7 @@ describe('TicTacToe', () => {
     expect(makeGame).toBeTruthy()
   })
 
-  test.only('Should return Winner properly', () => {
+  test('Should return Winner properly', () => {
     const games = {
       rows: [
         [1, 1, 1, 2, 2, 0, 0, 0, 0],
@@ -33,6 +33,10 @@ describe('TicTacToe', () => {
     games.diagonals.forEach(game => {
       expect(new TicTacToe(game).getWinner()).toBe(1)
     })
+  })
+
+  test('Should return Tie', () => {
+    expect(new TicTacToe([1, 1, 2, 2, 1, 1, 1, 2, 2]).getWinner()).toBe(0)
   })
 
   test('Should throw error when Empty arrays passed', () => {

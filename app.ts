@@ -53,7 +53,7 @@ export class TicTacToe {
 
   private calculateWinner (p1: number, p2: number, p3: number): number | null {
     if (this.board[p1] === 0 || this.board[p2] === 0 || this.board[p3] === 0) {
-      return null
+      return 0
     }
 
     const winner = this.board[p1] === this.board[p2] && this.board[p2] === this.board[p3]
@@ -62,7 +62,7 @@ export class TicTacToe {
       return this.board[p1]
     }
 
-    return null
+    return 0
   }
 
   public getWinner (): number | null {
