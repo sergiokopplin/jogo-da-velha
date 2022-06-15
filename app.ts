@@ -17,23 +17,23 @@ export class TicTacToe {
   }
 
   private hasEnoughItems (): boolean {
-    return this.board.some(column => column.length === this.dimensions)
+    return this.board.some(row => row.length === this.dimensions)
   }
 
   private hasOnlyAllowedItems (): boolean {
-    return this.board.some(column => column.some(item => this.validValues.includes(item)))
+    return this.board.some(row => row.some(item => this.validValues.includes(item)))
   }
 
   private hasNotOnlyZeros (): boolean {
-    return this.board.some(column => column.some(item => [1, 2].includes(item)))
+    return this.board.some(row => row.some(item => [1, 2].includes(item)))
   }
 
   private hasOnlyValidMoves (): boolean {
     let countFirstPlayer = 0
     let countSecondPlayer = 0
 
-    this.board.forEach(column => {
-      column.forEach(item => {
+    this.board.forEach(row => {
+      row.forEach(item => {
         if (item === 1) {
           countFirstPlayer++
         } else if (item === 2) {
@@ -54,10 +54,6 @@ export class TicTacToe {
     ]
 
     return validations.filter(item => item === true).length === validations.length
-  }
-
-  public getStatus (): Status {
-    return 'running'
   }
 
   // Status: running | tie | winner
