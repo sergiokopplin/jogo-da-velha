@@ -21,9 +21,11 @@ export class TicTacToe {
     }
 
     const hasError = this.board.some(column => {
-      if (column.length !== this.rows) {
-        return true
-      }
+      const hasNotEnoughItems = column.length !== this.rows
+      if (hasNotEnoughItems) return true
+
+      const hasDifferentNumbers = column.some(item => item !== 1 && item !== 0)
+      if (hasDifferentNumbers) return true
     })
 
     return !hasError
