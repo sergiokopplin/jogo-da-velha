@@ -6,6 +6,13 @@ describe('TicTacToe', () => {
     expect(makeGame).toBeTruthy()
   })
 
+  test('Should return Status Running properly', () => {
+    expect(new TicTacToe([[1, 0, 0], [0, 0, 0], [0, 0, 0]]).getStatus()).toBe('running')
+    expect(new TicTacToe([[1, 1, 0], [2, 2, 0], [1, 2, 0]]).getStatus()).toBe('running')
+  })
+
+  // Errors
+
   test('Should throw error when Empty arrays passed', () => {
     expect(() => new TicTacToe([])).toThrowError('Invalid Board')
     expect(() => new TicTacToe([[], [], []])).toThrowError('Invalid Board')

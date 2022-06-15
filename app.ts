@@ -1,4 +1,5 @@
 type Board = number[][]
+type Status = 'running' | 'tie' | 'winner'
 
 export class TicTacToe {
   private readonly board: Board
@@ -53,6 +54,10 @@ export class TicTacToe {
     ]
 
     return validations.filter(item => item === true).length === validations.length
+  }
+
+  public getStatus (): Status {
+    return 'running'
   }
 
   // Status: running | tie | winner
