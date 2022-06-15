@@ -27,8 +27,26 @@ export class TicTacToe {
     return this.board.some(column => column.some(item => [1, 2].includes(item)))
   }
 
+  private hasValidMoves (): boolean {
+    let countFirstPlayer = 0
+    let countSecondPlayer = 0
+
+    this.board.forEach(column => {
+      column.forEach(item => {
+        if (item === 1) {
+          countFirstPlayer++
+        } else if (item === 2) {
+          countSecondPlayer++
+        }
+      })
+    })
+
+    return Math.abs(countFirstPlayer - countSecondPlayer) <= 1
+  }
+
   private isValidBoard (): boolean {
-    const validations = [this.hasEnoughItems(), this.hasOnlyAllowedItems(), this.hasNotOnlyZeros()]
+    const validations = [this.hasEnoughItems(), this.hasOnlyAllowedItems(), this.hasNotOnlyZeros(), this.hasValidMoves()]
+
     return validations.filter(item => item === true).length === validations.length
   }
 
