@@ -45,7 +45,12 @@ export class TicTacToe {
   }
 
   private isValidBoard (): boolean {
-    const validations = [this.hasEnoughItems(), this.hasOnlyAllowedItems(), this.hasNotOnlyZeros(), this.hasOnlyValidMoves()]
+    const validations = [
+      this.hasEnoughItems(),
+      this.hasOnlyAllowedItems(),
+      this.hasNotOnlyZeros(),
+      this.hasOnlyValidMoves()
+    ]
 
     return validations.filter(item => item === true).length === validations.length
   }
